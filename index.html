@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f7a55">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Hamdard">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Hamdard Welfare Society | ہمدرد ویلفیئر سوسائٹی</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--bg:#eef3ef;--card:#fff;--tx:#17251d;--mut:#6b7a70;--pr:#0f7a55;--pr2:#14b87a;--ln:#e0e8e2;--bad:#d9453b;--sh:0 6px 20px rgba(15,80,55,.10);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1612;--card:#17231c;--tx:#e8f0ea;--mut:#8fa397;--pr:#2fd394;--pr2:#14b87a;--ln:#26362c;--bad:#ff8a80;--sh:none}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Poppins,Tahoma,sans-serif;line-height:1.6;padding-bottom:90px}
+body.ur{font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',Tahoma,serif;line-height:2.1}
+.hero{background:linear-gradient(135deg,#0b5d42,#14b87a);color:#fff;padding:18px 16px 46px;border-radius:0 0 28px 28px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hero h1{margin:0;font-size:1.15rem}.hero small{opacity:.85}.logo{font-size:2rem}
+.lang{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:0 14px;font:inherit;cursor:pointer}
+main{max-width:920px;margin:-30px auto 0;padding:0 12px}
+.card{background:var(--card);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--ln)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:12px}
+.stat{border-radius:18px;padding:12px 14px;color:#fff;box-shadow:var(--sh)}
+.stat span{font-size:1.5rem}.stat b{display:block;font-size:1.35rem}
+.g1{background:linear-gradient(135deg,#0f7a55,#2fd394)}.g2{background:linear-gradient(135deg,#d9453b,#ff8a65)}.g3{background:linear-gradient(135deg,#2563eb,#60a5fa)}.g4{background:linear-gradient(135deg,#9333ea,#c084fc)}
+input,select{font:inherit;padding:4px 12px;border:1.5px solid var(--ln);border-radius:12px;background:var(--bg);color:var(--tx);width:100%;margin:4px 0}
+input:focus,select:focus{outline:0;border-color:var(--pr2)}
+.b{font:inherit;padding:4px 18px;border:0;border-radius:24px;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;cursor:pointer;margin:4px 3px;box-shadow:var(--sh)}
+.b.w{background:#25d366}.b.s{background:#2563eb}.b.r{background:#e11d48}
+.x{border:0;background:none;color:var(--bad);cursor:pointer;font:inherit}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88rem}th{color:var(--mut);font-weight:600}th,td{border-bottom:1px solid var(--ln);padding:0 8px;text-align:start;white-space:nowrap}
+h3{margin:4px 0 6px;font-size:1.02rem}.mut{color:var(--mut);font-size:.82rem}
+.bar{height:10px;border-radius:6px;background:linear-gradient(90deg,var(--pr),var(--pr2));min-width:4px}
+.note{background:linear-gradient(135deg,#e7fbf1,#d6f5e6);color:#0b4d36;border-radius:18px;padding:12px;margin-bottom:12px;border:1px solid #9be3c3}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--ln);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav button{border:0;background:none;color:var(--mut);font:inherit;font-size:.72rem;display:flex;flex-direction:column;align-items:center;cursor:pointer;line-height:1.4;padding:2px 8px;border-radius:14px}
+nav button i{font-style:normal;font-size:1.4rem}nav button.on{color:var(--pr);background:var(--bg);font-weight:600}
+footer{text-align:center;color:var(--mut);padding:16px;font-size:.85rem}footer b{color:var(--pr)}
+.paper{--tx:#111;--mut:#555;--ln:#ddd;background:#fff;color:#111;border-radius:12px;padding:16px;border:1px solid #ddd}
+.paper h2{margin:0;color:#0f7a55}.paper .stat{box-shadow:none}
+a.b,a.x{text-decoration:none;display:inline-block}
+</style></head><body class="ur">
+<div class="hero"><div><h1 id="ti"></h1><small id="su"></small></div><div style="text-align:center"><div class="logo">🤝</div><button class="lang" id="lg" onclick="setL()"></button></div></div>
+<main id="m"></main>
+<footer>Made by <b>Ahmad Hassan Butt</b> (BUTT) · احمد حسن بٹ</footer>
+<nav id="nv"></nav>
+<script>
+const $=s=>document.querySelector(s);
+const EMPTY=()=>({boxes:[],cols:[],exps:[]});let D=EMPTY(),V='dash',R='mo',L='ur',LAST=0,KEY=null,SALT=null,tm;
+try{L=localStorage.getItem('hwl')||'ur'}catch(e){}
+const enc=new TextEncoder(),b64=b=>{let x='';for(const c of new Uint8Array(b))x+=String.fromCharCode(c);return btoa(x)},ub=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+async function mk(pin,salt){const m=await crypto.subtle.importKey('raw',enc.encode(pin),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},m,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function pack(){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},KEY,enc.encode(JSON.stringify(D)));return JSON.stringify({s:b64(SALT),i:b64(iv),d:b64(ct)})}
+async function unpack(v,pin){const o=JSON.parse(v),sl=ub(o.s),k=await mk(pin,sl),pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(o.i)},k,ub(o.d));SALT=sl;KEY=k;return JSON.parse(new TextDecoder().decode(pt))}
+const T={title:['ہمدرد ویلفیئر سوسائٹی','Hamdard Welfare Society'],sub:['غریبوں کی مدد، امانت کے ساتھ','Helping the needy, with trust'],dash:['ڈیش بورڈ','Dashboard'],box:['باکسز','Boxes'],col:['وصولی','Collection'],exp:['اخراجات','Expenses'],rep:['رپورٹس','Reports'],tc:['کل وصولی','Total Collected'],te:['کل اخراجات','Total Spent'],bal:['باقی رقم','Balance'],nb:['کل باکسز','Total Boxes'],name:['گھر / دکان یا سربراہ کا نام','Household / shop or head name'],ph:['رابطہ نمبر (03xx...)','Contact number (03xx...)'],loc:['جگہ (اختیاری)','Location (optional)'],save:['محفوظ کریں','Save'],del:['حذف','Delete'],cf:['حذف کریں؟','Delete?'],amt:['رقم (روپے)','Amount (Rs)'],date:['تاریخ','Date'],cat:['مد (علاج، راشن، تعلیم...)','Category (medical, ration, education...)'],note:['تفصیل / مستحق کا نام','Details / beneficiary'],nbx:['نیا باکس','New Box'],ncl:['وصولی درج کریں','Record Collection'],nex:['خرچ درج کریں','Record Expense'],wk:['ہفتہ وار','Weekly'],mo:['ماہانہ','Monthly'],qt:['سہ ماہی','Quarterly'],pdf:['PDF ڈاؤن لوڈ','Download PDF'],shr:['واٹس ایپ گروپ میں شیئر','Share to WhatsApp group'],sms:['SMS (آف لائن)','SMS (offline)'],wa:['واٹس ایپ','WhatsApp'],ntf:['اطلاع بھیجیں:','Send notification to:'],none:['کوئی ریکارڈ نہیں','No records'],bb:['باکس وار وصولی','Collection by box'],bc:['مد وار اخراجات','Expenses by category'],det:['اخراجات کی تفصیل','Expense details'],sv:['✅ محفوظ ہو گیا۔','✅ Saved.'],tot:['کل','Total'],hint:['پہلے "باکسز" میں باکس شامل کریں، پھر "وصولی" درج کریں۔ ایپ بغیر انٹرنیٹ چلتی ہے، SMS آف لائن جاتا ہے، واٹس ایپ کے لیے نیٹ چاہیے۔','Add boxes first, then record collections. Works without internet; SMS works offline, WhatsApp needs internet.'],pw:['PDF بن رہا ہے...','Creating PDF...'],pe:['PDF لائبریری کو ایک بار انٹرنیٹ چاہیے۔ پرنٹ کھل رہا ہے، "Save as PDF" چنیں۔','PDF tool needs internet once. Opening print: choose "Save as PDF".'],lang:['English','اردو'],sec:['سیکیورٹی اور بیک اپ','Security & Backup'],lk:['لاک کریں','Lock now'],bk:['بیک اپ محفوظ کریں','Save backup'],rs:['بیک اپ بحال کریں','Restore backup'],pin:['پن کوڈ (کم از کم 4 ہندسے)','PIN (at least 4 digits)'],sp:['نیا پن کوڈ بنائیں','Create your PIN'],up:['پن کوڈ سے کھولیں','Unlock with PIN'],wr:['پن کوڈ غلط ہے یا فائل خراب ہے','Wrong PIN or damaged file'],wn:['پن کوڈ بھول گئے تو ڈیٹا واپس نہیں آ سکتا، اس لیے بیک اپ رکھیں۔ ڈیٹا انکرپٹڈ (AES-256) محفوظ ہوتا ہے۔','If you forget the PIN the data cannot be recovered, so keep a backup. Data is stored encrypted (AES-256).'],nc:['یہ براؤزر انکرپشن سپورٹ نہیں کرتا، Chrome میں کھولیں۔','This browser lacks encryption support. Open in Chrome.'],go:['آگے بڑھیں','Continue']};
+const t=k=>T[k][L=='ur'?0:1];
+const today=()=>new Date().toISOString().slice(0,10);
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const N=n=>Number(n).toLocaleString('en-US');
+const sum=a=>a.reduce((s,x)=>s+Number(x.amt),0);
+const bx=i=>D.boxes.find(b=>b.id==i)||{name:'—',phone:''};
+const save=()=>{try{localStorage.setItem('hwl',L)}catch(e){}if(KEY)pack().then(v=>{try{localStorage.setItem('hws2',v)}catch(e){}})};
+const ph=p=>{p=(p||'').replace(/\D/g,'');return p[0]=='0'?'92'+p.slice(1):p};
+const open_=u=>window.open(u,'_blank');
+const mt=x=>{const b=bx(x.box);return L=='ur'?`السلام علیکم ${b.name}،\nہمدرد ویلفیئر سوسائٹی: آپ کے باکس سے ${N(x.amt)} روپے وصول ہوئے (${x.date})۔ جزاک اللہ خیراً`:`Assalam o Alaikum ${b.name},\nHamdard Welfare Society: Rs ${N(x.amt)} was collected from your box on ${x.date}. JazakAllah Khair.`};
+const smsU=i=>{const x=D.cols.find(c=>c.id==i);return 'sms:+'+ph(bx(x.box).phone)+'?&body='+encodeURIComponent(mt(x))};
+const waU=i=>{const x=D.cols.find(c=>c.id==i);return 'https://wa.me/'+ph(bx(x.box).phone)+'?text='+encodeURIComponent(mt(x))};
+function setL(){L=L=='ur'?'en':'ur';save();draw()}
+const tabs=[['dash','🏠'],['box','📦'],['col','💰'],['exp','🧾'],['rep','📊']];
+function range(){const d=new Date(),y=d.getFullYear(),m=d.getMonth(),f=x=>x.toISOString().slice(0,10);
+if(R=='wk'){const s=new Date(d);s.setDate(d.getDate()-6);return[f(s),f(d)]}
+if(R=='mo')return[f(new Date(Date.UTC(y,m,1))),f(new Date(Date.UTC(y,m+1,0)))];
+const q=Math.floor(m/3)*3;return[f(new Date(Date.UTC(y,q,1))),f(new Date(Date.UTC(y,q+3,0)))]}
+const rows=o=>Object.entries(o).map(([k,v])=>`<tr><td>${E(k)}</td><td>${N(v)}</td></tr>`).join('')||`<tr><td>${t('none')}</td></tr>`;
+function stats(c,e){return`<div class="grid"><div class="stat g1"><span>💰</span><div>${t('tc')}</div><b>Rs ${N(c)}</b></div><div class="stat g2"><span>🧾</span><div>${t('te')}</div><b>Rs ${N(e)}</b></div><div class="stat g3"><span>⚖️</span><div>${t('bal')}</div><b>Rs ${N(c-e)}</b></div>`+(V=='dash'?`<div class="stat g4"><span>📦</span><div>${t('nb')}</div><b>${D.boxes.length}</b></div>`:'')+'</div>'}
+function draw(){const ur=L=='ur';document.documentElement.dir=ur?'rtl':'ltr';document.body.className=ur?'ur':'';
+$('#ti').textContent=t('title');$('#su').textContent=t('sub');$('#lg').textContent=t('lang');
+if(!KEY){$('#nv').innerHTML='';gate();return}
+$('#nv').innerHTML=tabs.map(a=>`<button class="${V==a[0]?'on':''}" onclick="V='${a[0]}';draw();scrollTo(0,0)"><i>${a[1]}</i>${t(a[0])}</button>`).join('');
+const c=sum(D.cols),e=sum(D.exps);let h='';
+if(V=='dash'){const cc={};D.exps.forEach(x=>cc[x.cat]=(cc[x.cat]||0)+ +x.amt);const mx=Math.max(1,...Object.values(cc));
+h=stats(c,e)+`<div class="note">${t('hint')}</div><div class="card"><h3>🔐 ${t('sec')}</h3><button class="b" onclick="lockNow()">🔒 ${t('lk')}</button><button class="b s" onclick="bk()">⬇️ ${t('bk')}</button><button class="b w" onclick="$('#rf').click()">⬆️ ${t('rs')}</button><input type="file" id="rf" accept=".hws,application/json" style="display:none" onchange="rst(this.files[0])"></div><div class="card"><h3>${t('bc')}</h3>${Object.entries(cc).map(([k,v])=>`<div class="mut">${E(k)} — ${N(v)}</div><div class="bar" style="width:${v/mx*100}%"></div>`).join('')||`<div class="mut">${t('none')}</div>`}</div>`}
+if(V=='box')h=`<div class="card"><h3>📦 ${t('nbx')}</h3><input id="bn" placeholder="${t('name')}"><input id="bp" type="tel" placeholder="${t('ph')}"><input id="bl" placeholder="${t('loc')}"><button class="b" onclick="addBox()">${t('save')}</button></div>
+<div class="card tw"><table><tr><th>${t('box')}</th><th>📞</th><th>📍</th><th>${t('tot')}</th><th></th></tr>${D.boxes.map(b=>`<tr><td>${E(b.name)}</td><td>${E(b.phone)}</td><td>${E(b.loc)}</td><td>${N(sum(D.cols.filter(x=>x.box==b.id)))}</td><td><button class="x" onclick="del('boxes',${b.id})">${t('del')}</button></td></tr>`).join('')}</table></div>`;
+if(V=='col'){const lx=D.cols.find(x=>x.id==LAST);
+h=(lx?`<div class="note">${t('sv')} <b>${E(bx(lx.box).name)}</b> — Rs ${N(lx.amt)}<br>${t('ntf')}<br><a class="b s" href="${smsU(lx.id)}">💬 ${t('sms')}</a><a class="b w" target="_blank" rel="noopener" href="${waU(lx.id)}">🟢 ${t('wa')}</a></div>`:'')+
+`<div class="card"><h3>💰 ${t('ncl')}</h3><select id="cb">${D.boxes.map(b=>`<option value="${b.id}">${E(b.name)}</option>`).join('')}</select><input id="ca" type="number" inputmode="numeric" placeholder="${t('amt')}"><input id="cd" type="date" value="${today()}"><button class="b" onclick="addCol()">${t('save')}</button></div>
+<div class="card tw"><table><tr><th>${t('date')}</th><th>${t('box')}</th><th>Rs</th><th></th></tr>${[...D.cols].reverse().map(x=>`<tr><td>${x.date}</td><td>${E(bx(x.box).name)}</td><td>${N(x.amt)}</td><td><a class="x" href="${smsU(x.id)}">💬</a><a class="x" target="_blank" rel="noopener" href="${waU(x.id)}">🟢</a><button class="x" onclick="del('cols',${x.id})">✖</button></td></tr>`).join('')}</table></div>`}
+if(V=='exp')h=`<div class="card"><h3>🧾 ${t('nex')}</h3><input id="ec" list="cl" placeholder="${t('cat')}"><datalist id="cl">${[...new Set(D.exps.map(x=>x.cat))].map(x=>`<option value="${E(x)}">`).join('')}</datalist><input id="ea" type="number" inputmode="numeric" placeholder="${t('amt')}"><input id="ed" type="date" value="${today()}"><input id="en" placeholder="${t('note')}"><button class="b" onclick="addExp()">${t('save')}</button></div>
+<div class="card tw"><table><tr><th>${t('date')}</th><th>${t('cat').split(' ')[0]}</th><th>${t('note').split(' ')[0]}</th><th>Rs</th><th></th></tr>${[...D.exps].reverse().map(x=>`<tr><td>${x.date}</td><td>${E(x.cat)}</td><td>${E(x.note)}</td><td>${N(x.amt)}</td><td><button class="x" onclick="del('exps',${x.id})">✖</button></td></tr>`).join('')}</table></div>`;
+if(V=='rep'){const[a,b]=range(),cs=D.cols.filter(x=>x.date>=a&&x.date<=b),es=D.exps.filter(x=>x.date>=a&&x.date<=b),bb={},cc={},tt=t({wk:'wk',mo:'mo',qt:'qt'}[R]);
+cs.forEach(x=>bb[bx(x.box).name]=(bb[bx(x.box).name]||0)+ +x.amt);es.forEach(x=>cc[x.cat]=(cc[x.cat]||0)+ +x.amt);
+window.RT=`🤝 ${t('title')} – ${tt}\n${a} → ${b}\n${t('tc')}: Rs ${N(sum(cs))}\n${t('te')}: Rs ${N(sum(es))}\n${t('bal')}: Rs ${N(sum(cs)-sum(es))}\n`+Object.entries(cc).map(([k,v])=>`• ${k}: ${N(v)}`).join('\n');
+h=`<div class="card"><select onchange="R=this.value;draw()">${[['wk','wk'],['mo','mo'],['qt','qt']].map(o=>`<option value="${o[0]}" ${R==o[0]?'selected':''}>${t(o[1])}</option>`).join('')}</select><button class="b r" id="pb" onclick="mkPdf()">📄 ${t('pdf')}</button><a class="b w" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(window.RT)}">🟢 ${t('shr')}</a></div>
+<div class="paper" id="rp" dir="${ur?'rtl':'ltr'}"><h2>🤝 ${t('title')}</h2><div class="mut">${tt} · ${a} → ${b}</div>${stats(sum(cs),sum(es))}<h3>${t('bb')}</h3><table>${rows(bb)}</table><h3>${t('bc')}</h3><table>${rows(cc)}</table><h3>${t('det')}</h3><table>${es.map(x=>`<tr><td>${x.date}</td><td>${E(x.cat)}</td><td>${E(x.note)}</td><td>${N(x.amt)}</td></tr>`).join('')||`<tr><td>${t('none')}</td></tr>`}</table><div class="mut" style="text-align:center;margin-top:10px">Made by Ahmad Hassan Butt (BUTT)</div></div>`}
+$('#m').innerHTML=h}
+async function mkPdf(){const bt=$('#pb');try{bt.textContent=t('pw');const c=await html2canvas($('#rp'),{scale:2,backgroundColor:'#fff'}),p=new jspdf.jsPDF('p','pt','a4'),W=p.internal.pageSize.getWidth(),H=p.internal.pageSize.getHeight(),k=c.width/W;let y=0;
+while(y<c.height){const sh=Math.min(H*k,c.height-y),s=document.createElement('canvas');s.width=c.width;s.height=sh;s.getContext('2d').drawImage(c,0,y,c.width,sh,0,0,c.width,sh);if(y)p.addPage();p.addImage(s.toDataURL('image/jpeg',.92),'JPEG',0,0,W,sh/k);y+=H*k}
+p.save('Hamdard-Report-'+R+'-'+today()+'.pdf')}catch(e){alert(t('pe'));window.print()}bt.textContent='📄 '+t('pdf')}
+const id=()=>Date.now()+Math.floor(Math.random()*999);
+function addBox(){const n=$('#bn').value.trim();if(!n)return;D.boxes.push({id:id(),name:n,phone:$('#bp').value,loc:$('#bl').value});save();draw()}
+function addCol(){const a=+$('#ca').value;if(!a||!D.boxes.length)return;const x={id:id(),box:$('#cb').value,amt:a,date:$('#cd').value};D.cols.push(x);LAST=x.id;save();draw();scrollTo(0,0)}
+function addExp(){const a=+$('#ea').value,c=$('#ec').value.trim();if(!a||!c)return;D.exps.push({id:id(),cat:c,amt:a,date:$('#ed').value,note:$('#en').value});save();draw()}
+function del(k,i){if(confirm(t('cf'))){D[k]=D[k].filter(x=>x.id!=i);save();draw()}}
+function gate(){const has=!!localStorage.getItem('hws2'),ok=window.crypto&&crypto.subtle;
+$('#m').innerHTML=`<div class="card" style="max-width:420px;margin:auto"><h3>🔒 ${t(has?'up':'sp')}</h3>`+(ok?`<input id="pin" type="password" inputmode="numeric" autocomplete="off" placeholder="${t('pin')}" onkeydown="if(event.key=='Enter')go()"><div id="er" style="color:var(--bad)"></div><button class="b" onclick="go()">${t('go')}</button><div class="mut">${t('wn')}</div>`:`<div style="color:var(--bad)">${t('nc')}</div>`)+'</div>'}
+async function go(){const p=$('#pin').value,v=localStorage.getItem('hws2');if(p.length<4){$('#er').textContent=t('pin');return}
+try{if(v)D=await unpack(v,p);else{SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await mk(p,SALT);D=EMPTY();save()}draw()}catch(e){KEY=null;$('#er').textContent=t('wr')}}
+function lockNow(){KEY=null;D=EMPTY();draw()}
+const idle=()=>{clearTimeout(tm);if(KEY)tm=setTimeout(lockNow,300000)};['click','keydown','touchstart'].forEach(e=>addEventListener(e,idle));
+async function bk(){const v=await pack(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([v],{type:'application/json'}));a.download='Hamdard-backup-'+today()+'.hws';document.body.appendChild(a);a.click();a.remove()}
+function rst(f){if(!f)return;const r=new FileReader();r.onload=async()=>{const p=prompt(t('pin'));if(!p)return;try{D=await unpack(r.result,p);save();draw()}catch(e){alert(t('wr'))}};r.readAsText(f)}
+draw();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
