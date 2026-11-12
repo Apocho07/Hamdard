@@ -1,0 +1,121 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # Keeps the same signing key between builds so new APKs update the old app (data stays)
+      - name: Restore signing key
+        uses: actions/cache@v4
+        with:
+          path: ~/.android
+          key: hamdard-android-signing-v1
+
+      - name: Prepare web files
+        run: |
+          mkdir -p www/vendor
+          cp index.html manifest.webmanifest icon-192.png icon-512.png maskable-512.png apple-touch-icon.png www/
+          curl -fsSL https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js -o www/vendor/html2canvas.min.js
+          curl -fsSL https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js -o www/vendor/jspdf.umd.min.js
+          sed -i 's#https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js#vendor/html2canvas.min.js#' www/index.html
+          sed -i 's#https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js#vendor/jspdf.umd.min.js#' www/index.html
+          cat > www/native-shim.js <<'EOF'
+          (function () {
+            var C = window.Capacitor;
+            if (!C || !C.isNativePlatform || !C.isNativePlatform()) return;
+            var FS = C.registerPlugin('Filesystem');
+            var SH = C.registerPlugin('Share');
+            async function nativeSave(a) {
+              var blob = await (await fetch(a.href)).blob();
+              var data = await new Promise(function (res, rej) {
+                var r = new FileReader();
+                r.onload = function () { res(String(r.result).split(',')[1]); };
+                r.onerror = rej;
+                r.readAsDataURL(blob);
+              });
+              var name = a.download || 'file';
+              var w = await FS.writeFile({ path: name, data: data, directory: 'CACHE' });
+              await SH.share({ title: name, url: w.uri, dialogTitle: 'Save or share ' + name });
+            }
+            function hit(a) {
+              return a instanceof HTMLAnchorElement && a.download && String(a.href).indexOf('blob:') === 0;
+            }
+            function fail(e) { alert('Save failed: ' + (e && e.message ? e.message : e)); }
+            var oc = HTMLAnchorElement.prototype.click;
+            HTMLAnchorElement.prototype.click = function () {
+              if (hit(this)) { nativeSave(this).catch(fail); return; }
+              return oc.call(this);
+            };
+            var od = EventTarget.prototype.dispatchEvent;
+            EventTarget.prototype.dispatchEvent = function (ev) {
+              if (ev && ev.type === 'click' && hit(this)) { nativeSave(this).catch(fail); return true; }
+              return od.call(this, ev);
+            };
+          })();
+          EOF
+          sed -i 's#<script src="vendor/html2canvas.min.js"></script>#<script src="native-shim.js"></script>&#' www/index.html
+          grep -c "native-shim.js" www/index.html
+
+      - name: Create Android project
+        run: |
+          npm init -y
+          npm i @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor/filesystem@6 @capacitor/share@6
+          npx cap init "Hamdard Welfare" com.hamdard.welfare --web-dir=www
+          npx cap add android
+          npx cap sync android
+          sed -i "s/versionCode 1/versionCode ${{ github.run_number }}/" android/app/build.gradle
+
+      - name: App icon
+        run: |
+          pip install pillow
+          python3 - <<'EOF'
+          from PIL import Image
+          import shutil
+          src = Image.open('icon-512.png').convert('RGBA')
+          res = 'android/app/src/main/res'
+          shutil.rmtree(res + '/mipmap-anydpi-v26', ignore_errors=True)
+          for d, s in {'mdpi': 48, 'hdpi': 72, 'xhdpi': 96, 'xxhdpi': 144, 'xxxhdpi': 192}.items():
+              im = src.resize((s, s), Image.LANCZOS)
+              for n in ('ic_launcher.png', 'ic_launcher_round.png'):
+                  im.save(res + '/mipmap-' + d + '/' + n)
+          EOF
+
+      - name: Build APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk ../Hamdard.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Hamdard-APK
+          path: Hamdard.apk
+
+      - name: Publish download link (Releases)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-apk
+          name: Hamdard APK (latest)
+          body: Download Hamdard.apk below and install it.
+          files: Hamdard.apk
+          make_latest: true
