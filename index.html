@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Hamdard Welfare Society | ہمدرد ویلفیئر سوسائٹی</title>
+<title>Hamdard</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -47,7 +47,7 @@ a.b,a.x{text-decoration:none;display:inline-block}
 </style></head><body class="ur">
 <div class="hero"><div><h1 id="ti"></h1><small id="su"></small></div><div style="text-align:center"><div class="logo">🤝</div><button class="lang" id="lg" onclick="setL()"></button></div></div>
 <main id="m"></main>
-<footer>Made by <b>Ahmad Hassan Butt</b> (BUTT) · احمد حسن بٹ</footer>
+<footer><b>Hamdard Welfare Shagari Bala</b><div style="margin-top:4px;font-size:.78rem">Developed By KK</div></footer>
 <nav id="nv"></nav>
 <script>
 const $=s=>document.querySelector(s);
@@ -97,7 +97,7 @@ if(V=='rep'){const[a,b]=range(),cs=D.cols.filter(x=>x.date>=a&&x.date<=b),es=D.e
 cs.forEach(x=>bb[bx(x.box).name]=(bb[bx(x.box).name]||0)+ +x.amt);es.forEach(x=>cc[x.cat]=(cc[x.cat]||0)+ +x.amt);
 window.RT=`🤝 ${t('title')} – ${tt}\n${a} → ${b}\n${t('tc')}: Rs ${N(sum(cs))}\n${t('te')}: Rs ${N(sum(es))}\n${t('bal')}: Rs ${N(sum(cs)-sum(es))}\n`+Object.entries(cc).map(([k,v])=>`• ${k}: ${N(v)}`).join('\n');
 h=`<div class="card"><select onchange="R=this.value;draw()">${[['wk','wk'],['mo','mo'],['qt','qt']].map(o=>`<option value="${o[0]}" ${R==o[0]?'selected':''}>${t(o[1])}</option>`).join('')}</select><button class="b r" id="pb" onclick="mkPdf()">📄 ${t('pdf')}</button><a class="b w" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(window.RT)}">🟢 ${t('shr')}</a></div>
-<div class="paper" id="rp" dir="${ur?'rtl':'ltr'}"><h2>🤝 ${t('title')}</h2><div class="mut">${tt} · ${a} → ${b}</div>${stats(sum(cs),sum(es))}<h3>${t('bb')}</h3><table>${rows(bb)}</table><h3>${t('bc')}</h3><table>${rows(cc)}</table><h3>${t('det')}</h3><table>${es.map(x=>`<tr><td>${x.date}</td><td>${E(x.cat)}</td><td>${E(x.note)}</td><td>${N(x.amt)}</td></tr>`).join('')||`<tr><td>${t('none')}</td></tr>`}</table><div class="mut" style="text-align:center;margin-top:10px">Made by Ahmad Hassan Butt (BUTT)</div></div>`}
+<div class="paper" id="rp" dir="${ur?'rtl':'ltr'}"><h2>🤝 ${t('title')}</h2><div class="mut">${tt} · ${a} → ${b}</div>${stats(sum(cs),sum(es))}<h3>${t('bb')}</h3><table>${rows(bb)}</table><h3>${t('bc')}</h3><table>${rows(cc)}</table><h3>${t('det')}</h3><table>${es.map(x=>`<tr><td>${x.date}</td><td>${E(x.cat)}</td><td>${E(x.note)}</td><td>${N(x.amt)}</td></tr>`).join('')||`<tr><td>${t('none')}</td></tr>`}</table><div class="mut" style="text-align:center;margin-top:10px"><b>Hamdard Welfare Shagari Bala</b><br>Developed By KK</div></div>`}
 $('#m').innerHTML=h}
 async function mkPdf(){const bt=$('#pb');try{bt.textContent=t('pw');const c=await html2canvas($('#rp'),{scale:2,backgroundColor:'#fff'}),p=new jspdf.jsPDF('p','pt','a4'),W=p.internal.pageSize.getWidth(),H=p.internal.pageSize.getHeight(),k=c.width/W;let y=0;
 while(y<c.height){const sh=Math.min(H*k,c.height-y),s=document.createElement('canvas');s.width=c.width;s.height=sh;s.getContext('2d').drawImage(c,0,y,c.width,sh,0,0,c.width,sh);if(y)p.addPage();p.addImage(s.toDataURL('image/jpeg',.92),'JPEG',0,0,W,sh/k);y+=H*k}

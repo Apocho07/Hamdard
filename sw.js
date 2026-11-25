@@ -1,6 +1,6 @@
 // Hamdard Welfare Society — offline service worker
 // Bump VERSION whenever you change any file, so phones pick up the update.
-const VERSION = 'hamdard-v1';
+const VERSION = 'hamdard-v3';
 const CORE = [
   './', './index.html', './manifest.webmanifest',
   './icon-192.png', './icon-512.png', './maskable-512.png', './apple-touch-icon.png'
