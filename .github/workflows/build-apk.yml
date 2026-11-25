@@ -79,7 +79,7 @@ jobs:
         run: |
           npm init -y
           npm i @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor/filesystem@6 @capacitor/share@6
-          npx cap init "Hamdard Welfare" com.hamdard.welfare --web-dir=www
+          npx cap init "Hamdard" com.hamdard.welfare --web-dir=www
           npx cap add android
           npx cap sync android
           sed -i "s/versionCode 1/versionCode ${{ github.run_number }}/" android/app/build.gradle
